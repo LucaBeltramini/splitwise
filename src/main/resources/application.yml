@@ -1,4 +1,3 @@
-# Configuración local (por defecto) y producción (profile: prod)
 spring:
   application:
     name: splitwise
@@ -6,21 +5,22 @@ spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:default}
 
-  # Datasource se sobreescribe por profile o variables de entorno
   datasource:
-    url: ${DB_URL:jdbc:h2:mem:splitwise;DB_CLOSE_DELAY=-1}
+    # Local por defecto (H2)
+    url: ${DATABASE_URL:jdbc:h2:mem:splitwise;DB_CLOSE_DELAY=-1}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
     username: ${DB_USER:sa}
     password: ${DB_PASSWORD:}
-    driver-class-name: ${DB_DRIVER:org.h2.Driver}
 
   jpa:
     hibernate:
       ddl-auto: update
+    open-in-view: false
     show-sql: false
     properties:
       hibernate:
         format_sql: true
-    # H2 en local
+
   h2:
     console:
       enabled: true
@@ -29,25 +29,30 @@ spring:
 server:
   port: ${PORT:8080}
 
-# Thymeleaf
 spring.thymeleaf:
   cache: false
   prefix: classpath:/templates/
   suffix: .html
 
 ---
-# Perfil para producción (Render, PostgreSQL)
+# ==========================
+# PERFIL PRODUCCIÓN (Render)
+# ==========================
 spring:
   config:
     activate:
       on-profile: prod
+
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    # Usa DATABASE_URL automáticamente (postgres://...)
+    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
+
   jpa:
+    hibernate:
+      ddl-auto: update   # después podés pasar a validate
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
   h2:
     console:
       enabled: false
