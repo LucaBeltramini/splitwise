@@ -44,14 +44,14 @@ spring:
       on-profile: prod
 
   datasource:
-    # Usa DATABASE_URL automáticamente (postgres://...)
-    url: ${DATABASE_URL}
     driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
-      ddl-auto: update   # después podés pasar a validate
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
 
   h2:
     console:
