@@ -1,0 +1,16 @@
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/model/Trip.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/service/ExpenseService.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/controller/HomeController.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/repository/TripRepository.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/SplitwiseApplication.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/model/Expense.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/model/Person.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/repository/ExpenseShareRepository.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/controller/TripController.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/repository/ExpenseRepository.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/dto/AddExpenseForm.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/model/ExpenseShare.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/service/TripService.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/dto/TransferSuggestion.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/repository/PersonRepository.java
+/Users/lucabeltramini/Documents/splitwise/src/main/java/com/splitwise/dto/PersonSummaryRow.java

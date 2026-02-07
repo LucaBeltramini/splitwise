@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta name="theme-color" content="#5A9AD4"/>
+    <title>Repartija — Gastos del viaje</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{/css/app.css}" rel="stylesheet"/>
+    <style>input, select, textarea{font-size:16px}.nav-tabs .nav-link{padding:.6rem 1rem}.btn,.list-group-item-action{min-height:44px;display:inline-flex;align-items:center}</style>
+</head>
+<body class="pb-4">
+<div class="container app-container py-3 py-md-4">
+    <h1 class="app-title mb-1">Repartija</h1>
+    <p class="app-tagline">Dividí los gastos y seguí de largo</p>
+
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <section class="card mb-4">
+        <div class="card-header">Crear viaje</div>
+        <div class="card-body">
+            <form th:action="@{/trips}" th:object="${trip}" method="post" class="row g-2">
+                <div class="col-12 col-sm-auto flex-grow-1">
+                    <label for="name" class="form-label">Nombre del viaje</label>
+                    <input id="name" th:field="*{name}" class="form-control" placeholder="Ej: Mundial 2026 — USA · Ej: Recital en River" required/>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger small"></div>
+                </div>
+                <div class="col-12 col-sm-auto d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Crear</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header">Viajes existentes</div>
+        <div class="card-body">
+            <p th:if="${#lists.isEmpty(trips)}" class="text-muted">No hay viajes. Crea uno arriba.</p>
+            <ul class="list-group list-group-flush" th:unless="${#lists.isEmpty(trips)}">
+                <li th:each="t : ${trips}" class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <a th:href="@{/trips/{id}(id=${t.id})}" th:text="${t.name}" class="text-decoration-none flex-grow-1">Viaje</a>
+                    <div class="d-flex gap-1">
+                        <a th:href="@{/trips/{id}(id=${t.id})}" class="btn btn-outline-primary btn-sm">Ver</a>
+                        <a th:href="@{/trips/{id}/edit(id=${t.id})}" class="btn btn-outline-secondary btn-sm">Editar</a>
+                        <a th:href="@{/trips/{id}/confirm-delete(id=${t.id})}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
